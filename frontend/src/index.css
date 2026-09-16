@@ -1,0 +1,187 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --brand: #4f46e5;
+  --brand-dark: #3730a3;
+  --bg: #f5f6fa;
+  --card-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
+  --card-shadow-hover: 0 6px 20px rgba(15, 23, 42, 0.1);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg);
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #1f2937;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Every page's main content fades/slides in on load */
+.container-fluid {
+  max-width: 1400px;
+  margin: 0 auto;
+  animation: fadeSlideUp 0.35s ease both;
+}
+
+/* Cards lift and animate in, staggered slightly by row */
+.card {
+  border: none !important;
+  border-radius: 14px !important;
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  animation: fadeSlideUp 0.4s ease both;
+}
+.card:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* Table rows fade in and highlight smoothly on hover */
+.table {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  animation: fadeIn 0.4s ease both;
+}
+.table thead {
+  background-color: #f8f9fc;
+}
+.table thead th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #6b7280;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0.9rem 1rem;
+}
+.table tbody td {
+  padding: 0.9rem 1rem;
+  vertical-align: middle;
+  border-color: #f0f1f5;
+  transition: background-color 0.15s ease;
+}
+.table-hover tbody tr:hover {
+  background-color: #f8f9ff;
+}
+
+/* Buttons: smooth lift + press feedback */
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 0.5rem 1.1rem;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.15s ease;
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(0);
+}
+.btn-primary {
+  background-color: var(--brand);
+  border-color: var(--brand);
+}
+.btn-primary:hover {
+  background-color: var(--brand-dark);
+  border-color: var(--brand-dark);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+}
+.btn-sm {
+  border-radius: 6px;
+  padding: 0.3rem 0.75rem;
+}
+
+/* Forms */
+.form-control, .form-select {
+  border-radius: 8px;
+  border-color: #d1d5db;
+  padding: 0.55rem 0.85rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+.form-label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+/* Badges pulse subtly when status is PENDING (draws the eye) */
+.badge {
+  font-weight: 500;
+  padding: 0.4em 0.75em;
+  border-radius: 6px;
+}
+.badge.bg-warning {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Alerts slide in */
+.alert {
+  border-radius: 10px;
+  border: none;
+  animation: fadeSlideUp 0.3s ease both;
+}
+
+/* Login/Register cards */
+.auth-card {
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.1);
+  animation: fadeSlideUp 0.45s ease both;
+}
+
+/* Navbar links: smooth highlight transition */
+.navbar {
+  background: linear-gradient(90deg, #1e1b4b, #312e81) !important;
+}
+.navbar .nav-link {
+  font-weight: 500;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.navbar .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Reusable spinner (used by the LoadingSpinner component) */
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e5e7eb;
+  border-top-color: var(--brand);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 2rem auto;
+}
